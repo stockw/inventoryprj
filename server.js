@@ -10,7 +10,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors({
     origin: '*'
   }));
-  
+  // allows use of req.body
+  app.use(express.json());
 
 let connectionString = `mongodb+srv://${process.env.MONGOOSEUSERNAME}:${process.env.MONGOOSEPASSWORD}@mongosetupcluster.1dnn4wp.mongodb.net/Inventory?retryWrites=true&w=majority`;
 
@@ -28,14 +29,15 @@ mongoose.connect(connectionString, {
 
 
 app.post('/create_item', async (req, res) => {
-    const {nameString: name, priceNumber: price, inventoryNumber: inventory, nextDeliveryDate: nextDelivery, delvieryAmntNumber: delvieryAmnt} = req.body;
-
+    const {nameString: name, priceNumber: price, inventoryNumber: inventory, nextDeliveryDate: nextDelivery, deliveryAmntNumber: deliveryAmnt} = req.body;
+    console.log(req.body);
+    console.log(deliveryAmnt);
     let returnedValue = await Item.create({
         name,
         price,
         inventory,
         nextDelivery,
-        delvieryAmnt
+        deliveryAmnt
     })
 
     console.log(returnedValue);
@@ -50,6 +52,8 @@ app.get('/get_inv_data', async (req, res) => {
     console.log(response);
     res.json(response);
 })
+
+// app.findByIdAndDelete("id", )
 
 
  app.listen(5000, () => {

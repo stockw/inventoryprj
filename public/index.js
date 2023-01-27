@@ -7,16 +7,16 @@ let submitButton = document.getElementById('submit-item');
 submitButton.addEventListener('click', async () => {
     let nameString = document.getElementById('name-input').value;
     let priceNumber = +document.getElementById('price-input').value;
-    let inventoryNumber = +document.getElementById('inventory-input');
+    let inventoryNumber = +document.getElementById('inventory-input').value;
     let nextDeliveryDate = document.getElementById('nextDelivery-input').value;
-    let delvieryAmntNumber = +document.getElementById('deliveryAmnt-input').value
+    let deliveryAmntNumber = +document.getElementById('deliveryAmnt-input').value
 
     const Item = {
         nameString,
         priceNumber,
         inventoryNumber,
         nextDeliveryDate,
-        delvieryAmntNumber
+        deliveryAmntNumber
     }
 
     let response = await fetch('http://localhost:5000/create_item', {
@@ -64,4 +64,10 @@ const getData = async () => {
     })
 }
 
-getData()
+// getData()
+
+// let displayPageButton = document.getElementById('display-page-button')
+// displayPageButton.addEventListener('click', (event) => {
+//     let id = event.target.databaseId
+//     window.location.href = "/get_inv_data"
+// })

@@ -6,7 +6,7 @@ const itemSchema = new mongoose.Schema({
     price: Number,
     inventory: Number,
     nextDelivery: Date,
-    delvieryAmnt: Number
+    deliveryAmnt: Number
 })
 
 
